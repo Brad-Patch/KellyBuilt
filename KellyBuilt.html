@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KellyBuilt Co. | Fine Craftsmanship</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #1a1a1a;
+    color: #f5f0eb;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .hero-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-col {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 15px;
+  }
+
+  .nav-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 28px 12px;
+    border: 2.5px solid #1a1a1a;
+    border-radius: 8px;
+    background: #ffffff;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    line-height: 1.35;
+    color: #1a1a1a;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .nav-card:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .logo-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+
+  .logo-wrap img {
+    max-width: 700px;
+    max-height: 700px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* ── SERVICE SECTIONS ── */
+  .service-section {
+    padding: 48px 8% 40px;
+  }
+
+  .section-header {
+    margin-bottom: 14px;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .section-accent-bar {
+    width: 5px;
+    height: 32px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    background: var(--sec-accent);
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: 900;
+    color: #f5f0eb;
+    line-height: 1.1;
+  }
+
+  .section-header p {
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+    color: rgba(245,240,235,0.65);
+    line-height: 1.6;
+    padding-left: 17px;
+  }
+
+  .slider-wrap {
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 12px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .slide {
+    flex: 0 0 calc(25% - 9px);
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #111;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .slide:hover img { transform: scale(1.04); }
+
+  .slider-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slider-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(245,240,235,0.4);
+    background: transparent;
+    color: #f5f0eb;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .slider-btn:hover {
+    background: rgba(245,240,235,0.15);
+    border-color: rgba(245,240,235,0.9);
+  }
+
+  .slider-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .slider-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(245,240,235,0.3);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .slider-dot.active {
+    background: #f5f0eb;
+    transform: scale(1.35);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a1a1a;
+    border-top: 3px solid #b8860b;
+    padding: 40px;
+    text-align: center;
+  }
+
+  footer img.footer-logo {
+    width: 90px;
+    opacity: 0.85;
+    margin-bottom: 16px;
+    filter: invert(1) brightness(0.85);
+  }
+
+  footer p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: #b8860b;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  footer small {
+    color: #6b6560;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero { height: auto; }
+
+    .hero-layout {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 12px;
+      gap: 14px;
+      height: auto;
+    }
+
+    .logo-wrap {
+      flex: none;
+      width: 100%;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .logo-wrap img { max-width: 200px; max-height: 200px; }
+
+    .nav-col {
+      flex-direction: row;
+      flex: none;
+      width: 100%;
+      padding: 0;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .nav-card {
+      flex: 1;
+      max-width: 130px;
+      font-size: 0.72rem;
+      padding: 10px 6px;
+    }
+
+    .service-section { padding: 20px 4% 16px; }
+    .section-header { margin-bottom: 10px; }
+    .section-header h2 { font-size: 1.1rem; }
+    .section-header p { font-size: 0.8rem; }
+    .slide { flex: 0 0 calc(50% - 5px); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="nav-col">
+      <a href="#new-homes" class="nav-card">New Homes<br>& ADUs</a>
+      <a href="#portico" class="nav-card">Portico &<br>Entrances</a>
+      <a href="#finish" class="nav-card">Finish Mill<br>Works</a>
+    </div>
+    <div class="logo-wrap">
+      <img src="images/KellyBuilt.jpg" alt="KellyBuilt Co. Logo">
+    </div>
+    <div class="nav-col">
+      <a href="#additions" class="nav-card">Additions &<br>Renovations</a>
+      <a href="#shingle" class="nav-card">Shingle<br>Art</a>
+      <a href="#concrete" class="nav-card">Artisan Concrete<br>Finishes</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEW HOMES -->
+<section class="service-section" id="new-homes" style="background:#111518; --sec-accent:#b8860b;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>New Homes & ADUs</h2>
+    </div>
+    <p>From the foundation to the final trim, we build new homes and accessory dwelling units with the same exacting standards that have defined KellyBuilt for decades.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-new-homes">
+      <div class="slide"><img src="images/NewHome.jpg" alt="New Homes"></div>
+      <div class="slide"><img src="images/NewHome2.jpg" alt="New Homes"></div>
+      <div class="slide"><img src="images/NewHome3.jpg" alt="New Homes"></div>
+      <div class="slide"><img src="images/NewHome4.jpg" alt="New Homes"></div>
+      <div class="slide"><img src="images/Home.jpg" alt="New Homes"></div>
+      <div class="slide"><img src="images/HomeRemodelAddedSecondfloor.jpg" alt="New Homes"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('new-homes',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-new-homes"></div>
+    <button class="slider-btn" onclick="slideBy('new-homes',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- ADDITIONS & RENOVATIONS -->
+<section class="service-section" id="additions" style="background:#1c1008; --sec-accent:#8b3a0f;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>Additions & Renovations</h2>
+    </div>
+    <p>We seamlessly integrate new spaces with your existing home, honoring its character while elevating its function.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-additions">
+      <div class="slide"><img src="images/AdditionsRenovations.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/AdditionsRenovations2.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/AdditionsRenovations3.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/AdditionsRenovationsCurbless.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/Remodel.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/Renovation.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/Renovation2.jpg" alt="Additions"></div>
+      <div class="slide"><img src="images/Renovation3.jpg" alt="Additions"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('additions',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-additions"></div>
+    <button class="slider-btn" onclick="slideBy('additions',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- PORTICO & ENTRANCES -->
+<section class="service-section" id="portico" style="background:#0e1218; --sec-accent:#3d4a5c;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>Portico & Entrances</h2>
+    </div>
+    <p>First impressions are built, not born. Our custom porticos and entryways set the tone for the entire home — crafted with precision and care.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-portico">
+      <div class="slide"><img src="images/PorticosEntryWays.jpg" alt="Portico"></div>
+      <div class="slide"><img src="images/PorticoEntryway2.jpg" alt="Portico"></div>
+      <div class="slide"><img src="images/PorticoEntryway3.jpg" alt="Portico"></div>
+      <div class="slide"><img src="images/PorticoEntryway4.jpg" alt="Portico"></div>
+      <div class="slide"><img src="images/FrontEntrance.jpg" alt="Portico"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('portico',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-portico"></div>
+    <button class="slider-btn" onclick="slideBy('portico',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- FINISH MILLWORK -->
+<section class="service-section" id="finish" style="background:#141008; --sec-accent:#b8860b;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>Finish Millwork</h2>
+    </div>
+    <p>Custom trim, moldings, built-ins, and cabinetry crafted to the highest standards. Our finish work transforms a house into a home of distinction.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-finish">
+      <div class="slide"><img src="images/FinishMillwork.jpg" alt="Finish Millwork"></div>
+      <div class="slide"><img src="images/FinishMillwork2.jpg" alt="Finish Millwork"></div>
+      <div class="slide"><img src="images/FinishMillwork3.jpg" alt="Finish Millwork"></div>
+      <div class="slide"><img src="images/Finish.jpg" alt="Finish Millwork"></div>
+      <div class="slide"><img src="images/Carpentry.jpg" alt="Finish Millwork"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('finish',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-finish"></div>
+    <button class="slider-btn" onclick="slideBy('finish',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- SHINGLE ART -->
+<section class="service-section" id="shingle" style="background:#100d08; --sec-accent:#8b6f47;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>Shingle Art</h2>
+    </div>
+    <p>A New England tradition elevated to art. Our decorative shingle patterns bring texture, personality, and curb appeal to gable ends and facades.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-shingle">
+      <div class="slide"><img src="images/ShingleArt.jpg" alt="Shingle Art"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('shingle',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-shingle"></div>
+    <button class="slider-btn" onclick="slideBy('shingle',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- ARTISAN CONCRETE -->
+<section class="service-section" id="concrete" style="background:#0a100d; --sec-accent:#4a7c5e;">
+  <div class="section-header">
+    <div class="section-title-row">
+      <div class="section-accent-bar"></div>
+      <h2>Artisan Concrete Finishes</h2>
+    </div>
+    <p>Concrete reimagined. From polished floors to exposed aggregate patios and custom countertops — industrial durability with genuine beauty that improves with age.</p>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="track-concrete">
+      <div class="slide"><img src="images/ArtisanConcrete.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/ArtisanConcrete2.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/ArtisanConcrete3.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/ArtisanConcrete4.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/Concrete.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/Concrete2.jpg" alt="Concrete"></div>
+      <div class="slide"><img src="images/Concrete3.jpg" alt="Concrete"></div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="slideBy('concrete',-1)">&#8592;</button>
+    <div class="slider-dots" id="dots-concrete"></div>
+    <button class="slider-btn" onclick="slideBy('concrete',1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo" src="images/KellyBuilt.jpg" alt="KellyBuilt Co.">
+  <p>781-789-4145</p>
+  <small>KELLYBUILTCO.COM &nbsp;·&nbsp; FINE CRAFTSMANSHIP &nbsp;·&nbsp; SOUTH SHORE, MA</small>
+</footer>
+
+<script>
+const sliderState = {};
+const SECTIONS = ['new-homes','additions','portico','finish','shingle','concrete'];
+
+function getPerView() {
+  return window.innerWidth <= 768 ? 2 : 4;
+}
+
+function initSlider(id) {
+  const track = document.getElementById('track-' + id);
+  const dotsEl = document.getElementById('dots-' + id);
+  if (!track) return;
+  const total = track.querySelectorAll('.slide').length;
+  sliderState[id] = { index: 0, total };
+  buildDots(id);
+}
+
+function buildDots(id) {
+  const state = sliderState[id];
+  const dotsEl = document.getElementById('dots-' + id);
+  if (!dotsEl || !state) return;
+  const maxIndex = Math.max(0, state.total - getPerView());
+  dotsEl.innerHTML = '';
+  for (let i = 0; i <= maxIndex; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'slider-dot' + (i === state.index ? ' active' : '');
+    dot.onclick = () => slideTo(id, i);
+    dotsEl.appendChild(dot);
+  }
+}
+
+function slideTo(id, index) {
+  const state = sliderState[id];
+  if (!state) return;
+  const maxIndex = Math.max(0, state.total - getPerView());
+  state.index = Math.min(Math.max(index, 0), maxIndex);
+  renderSlider(id);
+}
+
+function slideBy(id, dir) {
+  const state = sliderState[id];
+  if (!state) return;
+  slideTo(id, state.index + dir);
+}
+
+function renderSlider(id) {
+  const state = sliderState[id];
+  const track = document.getElementById('track-' + id);
+  const dotsEl = document.getElementById('dots-' + id);
+  if (!track || !state) return;
+  const slide = track.querySelector('.slide');
+  if (!slide) return;
+  const slideW = slide.offsetWidth + 12;
+  track.style.transform = `translateX(-${state.index * slideW}px)`;
+  if (dotsEl) {
+    dotsEl.querySelectorAll('.slider-dot')
+      .forEach((d, i) => d.classList.toggle('active', i === state.index));
+  }
+}
+
+window.addEventListener('load', () => {
+  SECTIONS.forEach(id => { initSlider(id); renderSlider(id); });
+});
+
+window.addEventListener('resize', () => {
+  SECTIONS.forEach(id => { buildDots(id); renderSlider(id); });
+});
+</script>
+
+</body>
+</html>
